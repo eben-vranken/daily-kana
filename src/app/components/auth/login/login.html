@@ -1,0 +1,15 @@
+<h1>Login</h1>
+
+@if(errorMessage) {
+<p class="text-red-500">{{ errorMessage }}</p>
+}
+
+<form class="flex flex-col [&>input]:border w-fit" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" formControlName="email">
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" formControlName="password">
+
+    <button type="submit" [disabled]="form.invalid">Sign Up</button>
+</form>

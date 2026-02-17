@@ -1,0 +1,17 @@
+<nav class="w-full flex items-center justify-between">
+    <a routerLink="/" class="text-xl font-bold">KeepItPaid</a>
+    <ul class="flex items-center gap-x-3">
+        <!-- Logged Out Links -->
+        @if (authService.currentUser() === null) {
+        <a routerLink="/login">Login</a>
+        <a routerLink="/signup">Sign Up</a>
+        }
+
+        <!-- Logged In Links -->
+        @if(authService.currentUser()) {
+        <span>{{authService.currentUser()?.username}}</span>
+
+        <span (click)="logout()">Logout</span>
+        }
+    </ul>
+</nav>

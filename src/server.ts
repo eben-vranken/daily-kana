@@ -39,11 +39,16 @@ app.use(
  * Handle all other requests by rendering the Angular application.
  */
 app.use((req, res, next) => {
+  // If the request targets the dashboard (or its client-only subroutes),
+  // skip server-side rendering and serve the browser index so the client
+  // app renders the dashboard entirely in the browser.
+  if (req.url && req.url.startsWith('/dashboard')) {
+    return res.sendFile(join(browserDistFolder, 'index.html'));
+  }
+
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
+    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });
 
