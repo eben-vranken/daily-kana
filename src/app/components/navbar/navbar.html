@@ -7,10 +7,10 @@
     <!-- Landing Page Links -->
     @if(authService.currentUser() === null) {
     <ul class="flex items-center gap-x-8">
-        <a routerLink="/about" class="anim-underline">Features</a>
-        <a routerLink="/pricing" class="anim-underline">Pricing</a>
-        <a routerLink="/pricing" class="anim-underline">FAQ</a>
-        <a routerLink="/pricing" class="anim-underline">About</a>
+        <a href="/#about" class="anim-underline">Features</a>
+        <a href="/#pricing" class="anim-underline">Pricing</a>
+        <a href="/#faq" class="anim-underline">FAQ</a>
+        <a href="/#about" class="anim-underline">About</a>
     </ul>
     }
 
@@ -26,7 +26,8 @@
         @if(authService.currentUser()) {
         <span>{{authService.currentUser()?.username}}</span>
 
-        <span (click)="logout()">Logout</span>
+        <span (click)="logout()"
+            class="px-3 py-1 bg-green-600 rounded text-white font-bold cursor-pointer">Logout</span>
         }
     </ul>
 </nav>
