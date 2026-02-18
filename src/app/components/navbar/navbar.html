@@ -16,10 +16,12 @@
     <ul class="hidden md:flex items-center gap-x-3">
         @if (authService.currentUser() === null) {
         <a routerLink="/login">Login</a>
-        <a routerLink="/signup" class="px-3 py-1 bg-green-600 rounded text-white font-bold hover:brightness-90">Sign Up</a>
+        <a routerLink="/signup" class="px-3 py-1 bg-green-600 rounded text-white font-bold hover:brightness-90">Sign
+            Up</a>
         } @else {
         <span>{{authService.currentUser()?.username}}</span>
-        <span (click)="logout()" class="px-3 py-1 bg-green-600 rounded text-white font-bold cursor-pointer hover:brightness-90">Logout</span>
+        <span (click)="logout()"
+            class="px-3 py-1 bg-green-600 rounded text-white font-bold cursor-pointer hover:brightness-90">Logout</span>
         }
     </ul>
 
@@ -28,7 +30,8 @@
     </button>
 
     @if (isMenuOpen()) {
-    <div class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center gap-y-8 text-2xl font-semibold md:hidden">
+    <div
+        class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center gap-y-8 text-2xl font-semibold md:hidden">
         @if(authService.currentUser() === null) {
         <a href="/#about" (click)="toggleMenu()">Features</a>
         <a href="/#pricing" (click)="toggleMenu()">Pricing</a>
@@ -39,7 +42,8 @@
         <a routerLink="/signup" (click)="toggleMenu()" class="px-6 py-2 bg-green-600 rounded text-white">Sign Up</a>
         } @else {
         <span>{{authService.currentUser()?.username}}</span>
-        <span (click)="logout(); toggleMenu()" class="px-6 py-2 bg-green-600 rounded text-white cursor-pointer">Logout</span>
+        <span (click)="logout(); toggleMenu()"
+            class="px-6 py-2 bg-green-600 rounded text-white cursor-pointer">Logout</span>
         }
     </div>
     }
