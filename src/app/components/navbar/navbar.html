@@ -1,6 +1,6 @@
 <nav class="w-full flex items-center justify-between py-5">
     <a routerLink="/" class="text-xl font-bold flex items-center gap-x-1">
-        <fa-icon [icon]="faMoneyBill" size="xl" class="text-green-600" />
+        <fa-icon [icon]="faMoneyBill" size="2xl" class="text-green-600" />
         Keep It Paid.
     </a>
 
@@ -19,15 +19,14 @@
         <!-- Logged Out Links -->
         @if (authService.currentUser() === null) {
         <a routerLink="/login">Login</a>
-        <a routerLink="/signup" class="px-3 py-1 bg-green-600 rounded text-white font-bold">Sign Up</a>
+        <a routerLink="/signup" class="px-3 py-1 bg-green-600 rounded text-white font-bold hover:brightness-90">Sign Up</a>
         }
 
         <!-- Logged In Links -->
         @if(authService.currentUser()) {
         <span>{{authService.currentUser()?.username}}</span>
 
-        <span (click)="logout()"
-            class="px-3 py-1 bg-green-600 rounded text-white font-bold cursor-pointer">Logout</span>
+        <span (click)="logout()" class="px-3 py-1 bg-green-600 rounded text-white font-bold cursor-pointer hover:brightness-90">Logout</span>
         }
     </ul>
 </nav>
