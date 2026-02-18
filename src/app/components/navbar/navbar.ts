@@ -1,7 +1,7 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faMoneyBill } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faMoneyBill, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'navbar',
@@ -11,7 +11,18 @@ import { faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 export class Navbar {
   @Input() authService: any;
 
+  isMenuOpen = signal(false);
+
   faMoneyBill = faMoneyBill;
+  faBars = faBars;
+  faXmark = faXmark;
+
+  toggleMenu() {
+    this.isMenuOpen.update(val => !val);
+
+    const isOpen = this.isMenuOpen();
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+  }
 
   router = inject(Router);
 

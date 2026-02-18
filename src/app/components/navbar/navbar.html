@@ -1,12 +1,11 @@
-<nav class="w-full flex items-center justify-between py-5">
-    <a routerLink="/" class="text-xl font-bold flex items-center gap-x-1">
+<nav class="w-full flex items-center justify-between py-5 relative">
+    <a routerLink="/" class="z-60 text-xl font-bold flex items-center gap-x-1">
         <fa-icon [icon]="faMoneyBill" size="2xl" class="text-green-600" />
         Keep It Paid.
     </a>
 
-    <!-- Landing Page Links -->
     @if(authService.currentUser() === null) {
-    <ul class="flex items-center gap-x-8">
+    <ul class="hidden md:flex items-center gap-x-8">
         <a href="/#about" class="anim-underline">Features</a>
         <a href="/#pricing" class="anim-underline">Pricing</a>
         <a href="/#faq" class="anim-underline">FAQ</a>
@@ -14,19 +13,34 @@
     </ul>
     }
 
-
-    <ul class="flex items-center gap-x-3">
-        <!-- Logged Out Links -->
+    <ul class="hidden md:flex items-center gap-x-3">
         @if (authService.currentUser() === null) {
         <a routerLink="/login">Login</a>
         <a routerLink="/signup" class="px-3 py-1 bg-green-600 rounded text-white font-bold hover:brightness-90">Sign Up</a>
-        }
-
-        <!-- Logged In Links -->
-        @if(authService.currentUser()) {
+        } @else {
         <span>{{authService.currentUser()?.username}}</span>
-
         <span (click)="logout()" class="px-3 py-1 bg-green-600 rounded text-white font-bold cursor-pointer hover:brightness-90">Logout</span>
         }
     </ul>
+
+    <button (click)="toggleMenu()" class="md:hidden z-[60] text-2xl focus:outline-none">
+        <fa-icon [icon]="isMenuOpen() ? faXmark : faBars"></fa-icon>
+    </button>
+
+    @if (isMenuOpen()) {
+    <div class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center gap-y-8 text-2xl font-semibold md:hidden">
+        @if(authService.currentUser() === null) {
+        <a href="/#about" (click)="toggleMenu()">Features</a>
+        <a href="/#pricing" (click)="toggleMenu()">Pricing</a>
+        <a href="/#faq" (click)="toggleMenu()">FAQ</a>
+        <a href="/#about" (click)="toggleMenu()">About</a>
+        <hr class="w-1/2 border-gray-200">
+        <a routerLink="/login" (click)="toggleMenu()">Login</a>
+        <a routerLink="/signup" (click)="toggleMenu()" class="px-6 py-2 bg-green-600 rounded text-white">Sign Up</a>
+        } @else {
+        <span>{{authService.currentUser()?.username}}</span>
+        <span (click)="logout(); toggleMenu()" class="px-6 py-2 bg-green-600 rounded text-white cursor-pointer">Logout</span>
+        }
+    </div>
+    }
 </nav>
