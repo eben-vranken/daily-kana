@@ -1,9 +1,25 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import {
+  faCalendarAlt,
+  faChartBar,
+  faFolder,
+  faGlobe,
+  faShieldAlt,
+  faWarning,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'landing-page',
   templateUrl: './landingpage.html',
-  imports: [RouterLink]
+  imports: [RouterLink, FaIconComponent],
 })
-export class LandingPage { }
+export class LandingPage {
+  faShield = faShieldAlt;
+  faGraph = faChartBar;
+  faWarning = faWarning;
+  faCalendar = faCalendarAlt;
+  faFolder = faFolder;
+  faGlobe = faGlobe;
+}
