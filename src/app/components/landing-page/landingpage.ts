@@ -4,6 +4,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faCalendarAlt,
   faChartBar,
+  faCheckCircle,
   faFolder,
   faGlobe,
   faShieldAlt,
@@ -22,4 +23,6 @@ export class LandingPage {
   faCalendar = faCalendarAlt;
   faFolder = faFolder;
   faGlobe = faGlobe;
+
+  faCheck = faCheckCircle;
 }
