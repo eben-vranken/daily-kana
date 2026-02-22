@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "keepitpaid": {
+    "dailykana": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -68,10 +68,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "keepitpaid:build:production"
+              "buildTarget": "dailykana:build:production"
             },
             "development": {
-              "buildTarget": "keepitpaid:build:development"
+              "buildTarget": "dailykana:build:development"
             }
           },
           "defaultConfiguration": "development"
