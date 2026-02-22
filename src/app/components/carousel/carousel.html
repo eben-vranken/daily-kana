@@ -1,0 +1,19 @@
+<section class="w-full">
+    <!-- Carousel Container -->
+    <div class="overflow-hidden touch-pan-y" (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)"
+        (touchend)="onTouchEnd()">
+        <div class="flex transition-transform duration-300 ease-in-out"
+            [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
+            <ng-content></ng-content>
+        </div>
+    </div>
+
+    <!-- Dot Indicators -->
+    <div class="flex justify-center gap-2 mt-4">
+        <button *ngFor="let item of items; let i = index" (click)="goTo(i)"
+            [ngClass]="i === currentIndex ? 'bg-green-600' : 'bg-gray-300'"
+            class="w-2.5 h-2.5 rounded-full transition-colors duration-200 hover:bg-green-400"
+            [attr.aria-label]="'Go to slide ' + (i + 1)">
+        </button>
+    </div>
+</section>

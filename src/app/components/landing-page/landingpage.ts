@@ -1,28 +1,30 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { PriceCardComponent } from '../price-card/price-card';
+import { FeatureCardComponent } from '../feature-card/feature-card';
+import { CarouselComponent } from '../carousel/carousel';
 import {
-  faCalendarAlt,
-  faChartBar,
+  faMasksTheater,
+  faComments,
+  faChartPie,
+  faBrain,
+  faUserTie,
+  faBolt,
   faCheckCircle,
-  faFolder,
-  faGlobe,
-  faShieldAlt,
-  faWarning,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'landing-page',
   templateUrl: './landingpage.html',
-  imports: [RouterLink, FaIconComponent],
+  imports: [RouterLink, FeatureCardComponent, PriceCardComponent, CarouselComponent],
 })
 export class LandingPage {
-  faShield = faShieldAlt;
-  faGraph = faChartBar;
-  faWarning = faWarning;
-  faCalendar = faCalendarAlt;
-  faFolder = faFolder;
-  faGlobe = faGlobe;
-
+  faMasksTheater = faMasksTheater;
+  faComments = faComments;
+  faChartPie = faChartPie;
+  faBrain = faBrain;
+  faUserTie = faUserTie;
+  faBolt = faBolt;
   faCheck = faCheckCircle;
 }

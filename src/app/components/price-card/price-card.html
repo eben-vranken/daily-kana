@@ -1,0 +1,22 @@
+<section
+    [ngClass]="'flex flex-col p-6 border w-full ' + (highlight ? 'text-white bg-green-600 ' : '') + 'border-black/10 shadow rounded'">
+    <h1 class="text-2xl font-bold">{{ title }}</h1>
+    <span class="opacity-50">{{ subheading }}</span>
+    <h2 class="font-bold text-5xl my-2">{{ price }}</h2>
+
+    <!-- Feature List -->
+    <section class="my-2 flex flex-col gap-y-2">
+        <section class="flex items-center gap-x-2" *ngFor="let feature of features">
+            <fa-icon [icon]="faCheck" size="2xl" [ngClass]="highlight ? 'text-white' : 'text-green-600'"></fa-icon>
+            <span>{{ feature }}</span>
+        </section>
+    </section>
+
+    <!-- CTA -->
+    <section class="flex justify-center my-3">
+        <a [routerLink]="ctaLink"
+            [ngClass]="highlight ? 'px-6 py-2 bg-white rounded-full text-green-600 font-bold flex w-fit' : 'px-6 py-2 bg-green-600 rounded-full text-white flex w-fit'">
+            {{ ctaText }}
+        </a>
+    </section>
+</section>
