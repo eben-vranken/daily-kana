@@ -1,6 +1,6 @@
 <section class="w-full border-b border-gray-200 overflow-hidden">
     <button (click)="toggle()" class="flex w-full items-center gap-3 py-5 text-left focus:outline-none group" [attr.aria-expanded]="isOpen()">
-        <fa-icon [icon]="icon" size='xl' [class]="iconClass()" class="flex-shrink-0" />
+        <fa-icon [icon]="icon" size='xl' [class]="iconClass()" class="shrink-0" />
         <span class="text-lg font-semibold flex-1 min-w-0">
             {{ question() }}
         </span>
