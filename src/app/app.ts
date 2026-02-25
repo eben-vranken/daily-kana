@@ -15,15 +15,14 @@ export class App {
 
   ngOnInit(): void {
     this.authService.supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN') {
-        this.authService.currentUser.set({
-          email: session?.user.email!,
-          username: session?.user.identities?.at(0)?.identity_data?.['username'],
-        });
-      } else if (event === 'SIGNED_OUT') {
+      if (event === 'SIGNED_OUT') {
         this.authService.currentUser.set(null);
+        return;
       }
-      console.log('!!', event, session);
+
+      if (session?.user) {
+        void this.authService.syncCurrentUser(session.user);
+      }
     });
   }
 }
