@@ -36,6 +36,15 @@
                 <input type="password" id="password" name="password" formControlName="password">
                 <label for="confirmPassword">Confirm Password:</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword">
+                <label for="acceptedTerms" class="flex items-start gap-2 mt-2">
+                    <input type="checkbox" id="acceptedTerms" name="acceptedTerms" formControlName="acceptedTerms" class="mt-1">
+                    <span>
+                        I agree to the <a routerLink="/terms-and-conditions" class="underline">Terms and Conditions</a>.
+                    </span>
+                </label>
+                @if(form.controls.acceptedTerms.touched && form.controls.acceptedTerms.invalid) {
+                <p class="text-red-500">You must accept the Terms and Conditions to continue.</p>
+                }
                 <button type="submit" [disabled]="form.invalid" class="bg-green-600 rounded-none my-2 py-2 font-bold text-white text-lg cursor-pointer hover:brightness-90">Sign Up</button>
             </section>
             <span class="opacity-50">Already have an account? <a routerLink="/login" class="underline">Log in</a> instead.</span>

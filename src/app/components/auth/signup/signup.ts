@@ -24,13 +24,19 @@ export class Signup {
     username: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
-    confirmPassword: ['', Validators.required]
+    confirmPassword: ['', Validators.required],
+    acceptedTerms: [false, Validators.requiredTrue],
   }, {
     validators: passwordMatchValidator
   });
   errorMessage: string | null = null;
 
   onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     const rawForm = this.form.getRawValue();
     this.authService
       .signup(rawForm.email, rawForm.username, rawForm.password)
