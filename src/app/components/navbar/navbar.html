@@ -30,7 +30,7 @@
 
     @if (isMenuOpen()) {
     <div class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center gap-y-8 text-2xl font-semibold md:hidden">
-        @if(authService.currentUser() === null && isHome()) {
+        @if(authService.currentUser() === null || isHome()) {
         <a href="/#features" (click)="toggleMenu()">Features</a>
         <a href="/#pricing" (click)="toggleMenu()">Pricing</a>
         <a href="/#faq" (click)="toggleMenu()">FAQ</a>
