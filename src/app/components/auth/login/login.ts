@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'login',
   templateUrl: './login.html',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
 })
 export class Login {
   fb = inject(FormBuilder);

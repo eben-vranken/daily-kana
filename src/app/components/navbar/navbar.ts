@@ -17,6 +17,10 @@ export class Navbar {
   faBars = faBars;
   faXmark = faXmark;
 
+  isHome() {
+    return this.router.url === '/' || this.router.url.startsWith('/#');
+  }
+
   toggleMenu() {
     this.isMenuOpen.update((val) => !val);
 

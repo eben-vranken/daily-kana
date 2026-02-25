@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { AuthResponse, createClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 import { from, Observable } from 'rxjs';
+import { Provider } from '@supabase/supabase-js';
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +34,12 @@ export class AuthService {
 
   logout(): void {
     this.supabase.auth.signOut();
+  }
+
+  signInWithGoogle(): Observable<any> {
+    const promise = this.supabase.auth.signInWithOAuth({
+      provider: 'google'
+    })
+    return from(promise);
   }
 }
