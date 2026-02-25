@@ -1,8 +1,7 @@
 import { Injectable, signal } from '@angular/core';
-import { AuthResponse, createClient } from '@supabase/supabase-js';
+import { AuthResponse, OAuthResponse, createClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 import { from, Observable } from 'rxjs';
-import { Provider } from '@supabase/supabase-js';
 
 @Injectable({
   providedIn: 'root',
@@ -36,9 +35,13 @@ export class AuthService {
     this.supabase.auth.signOut();
   }
 
-  signInWithGoogle(): Observable<any> {
+  signInWithGoogle(): Observable<OAuthResponse> {
+    const redirectTo = typeof window !== 'undefined' ? `${window.location.origin}/` : undefined;
     const promise = this.supabase.auth.signInWithOAuth({
-      provider: 'google'
+      provider: 'google',
+      options: {
+        redirectTo,
+      },
     })
     return from(promise);
   }
