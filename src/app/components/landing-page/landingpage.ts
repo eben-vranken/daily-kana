@@ -14,11 +14,12 @@ import {
   faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FaqItemComponent } from "../faq/faq-item";
+import { Footer } from "../footer/footer";
 
 @Component({
   selector: 'landing-page',
   templateUrl: './landingpage.html',
-  imports: [RouterLink, FeatureCardComponent, PriceCardComponent, CarouselComponent, FaqItemComponent],
+  imports: [RouterLink, FeatureCardComponent, PriceCardComponent, CarouselComponent, FaqItemComponent, Footer],
 })
 export class LandingPage {
   faMasksTheater = faMasksTheater;
