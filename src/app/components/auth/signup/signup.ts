@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, ReactiveFormsModule, AbstractControl, Validators, ValidationErrors } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { Footer } from "../../footer/footer";
 
 function passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
   const password = control.get('password')?.value;
@@ -12,7 +13,7 @@ function passwordMatchValidator(control: AbstractControl): ValidationErrors | nu
 @Component({
   selector: 'signup',
   templateUrl: './signup.html',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, Footer],
 })
 export class Signup {
   fb = inject(FormBuilder);
