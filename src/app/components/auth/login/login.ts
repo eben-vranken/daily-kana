@@ -29,4 +29,17 @@ export class Login {
       }
     });
   }
+
+  onGoogleAuth(): void {
+    this.authService.signInWithGoogle().subscribe({
+      next: (result) => {
+        if (result.error) {
+          this.errorMessage = result.error.message;
+        }
+      },
+      error: (err) => {
+        this.errorMessage = 'Failed to initialize Google authentication.';
+      }
+    })
+  }
 }
