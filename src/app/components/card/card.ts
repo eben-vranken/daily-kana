@@ -3,13 +3,13 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import type { SizeProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
-  selector: 'app-feature',
+  selector: 'card',
   standalone: true,
-  templateUrl: './feature-card.html',
+  templateUrl: './card.html',
   imports: [FaIconComponent],
   host: { class: 'block' },
 })
-export class FeatureCardComponent {
+export class Card {
   @Input() icon: any;
   @Input() iconSize: SizeProp = 'xl';
   @Input() iconClass: string = '';

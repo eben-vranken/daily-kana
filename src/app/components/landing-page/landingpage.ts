@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { PriceCardComponent } from '../price-card/price-card';
-import { FeatureCardComponent } from '../feature-card/feature-card';
+import { Card } from '../card/card';
 import { CarouselComponent } from '../carousel/carousel';
 import {
   faMasksTheater,
@@ -19,7 +18,7 @@ import { Footer } from "../footer/footer";
 @Component({
   selector: 'landing-page',
   templateUrl: './landingpage.html',
-  imports: [RouterLink, FeatureCardComponent, PriceCardComponent, CarouselComponent, FaqItemComponent, Footer],
+  imports: [RouterLink, Card, PriceCardComponent, CarouselComponent, FaqItemComponent, Footer],
 })
 export class LandingPage {
   faMasksTheater = faMasksTheater;
