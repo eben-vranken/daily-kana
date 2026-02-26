@@ -1,8 +1,22 @@
-<main class="flex flex-col min-h-[calc(100vh-5rem)]">
+<main class="flex flex-col gap-y-4 min-h-[calc(100vh-5rem)]">
+    <section>
+        <h1 class="text-xl font-bold">Ready to learn {{selectedLanguage}}?</h1>
+        <p>Select a scenario to start a conversation.</p>
+    </section>
+
     <!-- Scenario selector -->
-    <section class="border border-black/25 rounded flex-1 h-screen p-4">
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        
+    @for (category of categories; track category.id) {
+    <section class="border border-black/25 rounded p-4">
+        <h2 class="text-lg font-bold mb-2">{{category.name}}</h2>
+        <p class="text-sm opacity-50 mb-4">{{category.description}}</p>
+        <section class="flex flex-wrap gap-2">
+            @for (scenario of category.scenarios; track scenario.id) {
+            <card class="flex-none hover:brightness-95" [routerLink]="['/chat']"
+                [queryParams]="{ language: selectedLanguage, scenario: scenario.id }" [title]="scenario.title"
+                [description]="scenario.description" [icon]="scenario.icon" iconSize="2xl"
+                [iconClass]="scenario.iconClass"></card>
+            }
         </section>
     </section>
+    }
 </main>

@@ -1,12 +1,18 @@
-<main class="flex flex-col min-h-[calc(100vh-5rem)]">
+<main class="flex flex-col gap-y-2 min-h-[calc(100vh-5rem)]">
+    <section>
+        <h1 class="text-xl font-bold">Welcome, {{ authService.currentUser()?.username }}</h1>
+        <p>Select a language to begin your learning journey.</p>
+    </section>
+
     <!-- Language selector -->
     <section class="border border-black/25 rounded flex-1 h-screen p-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <section class="flex flex-wrap gap-2">
             @for (language of languageCards; track language.title) {
-            <card [routerLink]="['/chat']" [queryParams]="{ language: language.title }" [title]="language.title"
+            <card class="flex-none hover:brightness-95" [routerLink]="['/chat']"
+                [queryParams]="{ language: language.title }" [title]="language.title"
                 [description]="language.description" [icon]="language.icon" iconSize="2xl"
                 [iconClass]="language.iconClass"></card>
             }
-        </div>
+        </section>
     </section>
 </main>
