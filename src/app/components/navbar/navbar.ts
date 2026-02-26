@@ -30,8 +30,8 @@ export class Navbar {
 
   router = inject(Router);
 
-  logout(): void {
-    this.authService.logout();
-    this.router.navigateByUrl('/');
+  async logout(): Promise<void> {
+    await this.authService.logout();
+    await this.router.navigateByUrl('/');
   }
 }

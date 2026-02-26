@@ -165,8 +165,8 @@ export class AuthService {
     return from(promise);
   }
 
-  logout(): void {
-    this.supabase.auth.signOut();
+  async logout(): Promise<void> {
+    await this.supabase.auth.signOut();
   }
 
   signInWithGoogle(): Observable<OAuthResponse> {

@@ -8,7 +8,7 @@ import { Params, RouterLink } from '@angular/router';
   standalone: true,
   templateUrl: './card.html',
   imports: [FaIconComponent, RouterLink],
-  host: { class: 'block' },
+  host: { class: 'block h-full' },
 })
 export class Card {
   @Input() icon: any;
