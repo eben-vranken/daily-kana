@@ -56,7 +56,7 @@ export class Dashboard {
         'text-yellow-600 bg-yellow-500/25 p-1 rounded aspect-square w-min flex items-center justify-center',
     },
     {
-      title: 'Mandarin Chinese',
+      title: 'Mandarin',
       description: 'Character-based writing with concise expression.',
       icon: faDragon,
       iconClass:
