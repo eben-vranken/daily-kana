@@ -14,6 +14,9 @@ import { from, Observable } from 'rxjs';
 export class AuthService {
   supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
   currentUser = signal<{ email: string; username: string } | null>(null);
+  authInitialized = signal(false);
+  private authStateListenerRegistered = false;
+  private initializePromise: Promise<void> | null = null;
 
   private toMetadataRecord(user: User): Record<string, unknown> {
     return (user.user_metadata ?? {}) as Record<string, unknown>;
@@ -93,6 +96,52 @@ export class AuthService {
       email,
       username: this.getUsername(resolvedUser),
     });
+  }
+
+  registerAuthStateListener(): void {
+    if (this.authStateListenerRegistered) {
+      return;
+    }
+
+    this.authStateListenerRegistered = true;
+
+    this.supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_OUT') {
+        this.currentUser.set(null);
+        this.authInitialized.set(true);
+        return;
+      }
+
+      void this.syncCurrentUser(session?.user ?? null).finally(() => {
+        this.authInitialized.set(true);
+      });
+    });
+  }
+
+  async initializeAuth(): Promise<void> {
+    if (this.authInitialized()) {
+      return;
+    }
+
+    if (this.initializePromise) {
+      return this.initializePromise;
+    }
+
+    this.registerAuthStateListener();
+
+    this.initializePromise = this.supabase.auth
+      .getSession()
+      .then(async ({ data: { session } }) => {
+        await this.syncCurrentUser(session?.user ?? null);
+      })
+      .catch(() => {
+        this.currentUser.set(null);
+      })
+      .finally(() => {
+        this.authInitialized.set(true);
+      });
+
+    return this.initializePromise;
   }
 
   signup(email: string, username: string, password: string): Observable<AuthResponse> {

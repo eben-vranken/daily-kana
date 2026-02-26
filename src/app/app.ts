@@ -14,15 +14,7 @@ export class App {
   authService = inject(AuthService);
 
   ngOnInit(): void {
-    this.authService.supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_OUT') {
-        this.authService.currentUser.set(null);
-        return;
-      }
-
-      if (session?.user) {
-        void this.authService.syncCurrentUser(session.user);
-      }
-    });
+    this.authService.registerAuthStateListener();
+    void this.authService.initializeAuth();
   }
 }

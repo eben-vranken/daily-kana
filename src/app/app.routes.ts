@@ -4,6 +4,7 @@ import { Signup } from './components/auth/signup/signup';
 import { LandingPage } from './components/landing-page/landingpage';
 import { Dashboard } from './components/dashboard/dashboard';
 import { TermsAndConditions } from './components/terms-and-conditions/terms-and-conditions';
+import { Chat } from './components/chat/chat';
 import { authGuard, redirectIfAuthenticatedGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -33,6 +34,11 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: Dashboard,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'chat',
+    component: Chat,
     canActivate: [authGuard],
   },
 ];

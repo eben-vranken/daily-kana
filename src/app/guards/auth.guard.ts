@@ -1,34 +1,39 @@
-import { inject } from '@angular/core';
+import { inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 export const authGuard: CanActivateFn = async (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
+  const platformId = inject(PLATFORM_ID);
 
-  const {
-    data: { user },
-  } = await authService.supabase.auth.getUser();
-
-  if (user) {
+  if (!isPlatformBrowser(platformId)) {
     return true;
   }
 
-  router.navigate(['/login']);
-  return false;
+  await authService.initializeAuth();
+
+  if (authService.currentUser()) {
+    return true;
+  }
+
+  return router.createUrlTree(['/login']);
 };
 
 export const redirectIfAuthenticatedGuard: CanActivateFn = async (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
+  const platformId = inject(PLATFORM_ID);
 
-  const {
-    data: { user },
-  } = await authService.supabase.auth.getUser();
+  if (!isPlatformBrowser(platformId)) {
+    return true;
+  }
 
-  if (user) {
-    router.navigate(['/dashboard']);
-    return false;
+  await authService.initializeAuth();
+
+  if (authService.currentUser()) {
+    return router.createUrlTree(['/dashboard']);
   }
 
   return true;
